@@ -321,7 +321,14 @@ module.exports = DatasetController.extend({
 		var chart = me.chart;
 		var meta = me.getMeta();
 		var points = meta.data || [];
-		var area = chart.chartArea;
+// 		var area = chart.chartArea;
+		var increaseArea = meta.dataset._model ? meta.dataset._model.borderWidth / 2 : 0;
+			var area = {
+				left: chart.chartArea.left,
+				top: chart.chartArea.top - increaseArea,
+				right: chart.chartArea.right,
+				bottom: chart.chartArea.bottom + increaseArea
+			};
 		var canvas = chart.canvas;
 		var i = 0;
 		var ilen = points.length;
